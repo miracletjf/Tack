@@ -1,0 +1,18 @@
+if [ -d $1 ]; then
+    echo 'error: dir exits'
+    exit 1
+else
+    mkdir $1
+    cd $1
+    mkdir css js
+    echo "<!DOCTYPE>" > index.html
+    echo "<title>Hello</title>" >> index.html
+    echo "<link rel='stylesheet' type='text/css' href='css/style.css' />" >> index.html
+    echo "<script src='js/main.js' type='text/javascript' ></script>" >> index.html
+    echo "<h1>Hi</hi>" >> index.html
+    echo "h1{color: red;}" > css/style.css
+    echo "var string = 'Hello World'" > js/main.js
+    echo "alert(string)" >> js/main.js
+    echo 'success'
+    exit 0
+fi
