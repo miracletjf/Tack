@@ -4,28 +4,37 @@ var fs = require('fs');
 
 var dirName = process.argv[2];
 
-var strHtml = '<!DOCTYPE>';
-strHtml += '<link rel="stylesheet" type="text/css" href="css/style.css" />';
-strHtml += '<script type="text/javascript" src="js/main.js"></script>';
-strHtml += '<title>Hello</title>';
-strHtml += '<h1>Hi</h1>';
+if(fs.existsSync(dirName)) {
+    console.log(dirName + ' exist !');
+    process.exit(1);
+} else {
 
-var strCss = 'h1{color: red;}';
+    var strHtml = '<!DOCTYPE>';
+    strHtml += '<link rel="stylesheet" type="text/css" href="css/style.css" />';
+    strHtml += '<script type="text/javascript" src="js/main.js"></script>';
+    strHtml += '<title>Hello</title>';
+    strHtml += '<h1>Hi</h1>';
 
-var strJs = 'var string = "Hello World";\n alert(string);';
+    var strCss = 'h1{color: red;}';
 
-fs.mkdirSync('./' + dirName); //mkdir
+    var strJs = 'var string = "Hello World";\n alert(string);';
 
-process.chdir('./' + dirName); //cd $1
+    fs.mkdirSync('./' + dirName); //mkdir
 
-fs.mkdirSync('css');
+    process.chdir('./' + dirName); //cd $1
 
-fs.mkdirSync('js');
+    fs.mkdirSync('css');
 
-fs.appendFileSync('./index.html',strHtml);
-fs.appendFileSync('css/style.css',strCss);
-fs.appendFileSync('js/main.js',strJs);
+    fs.mkdirSync('js');
 
-process.exit(0);
+
+    fs.appendFileSync('./index.html',strHtml);
+    fs.appendFileSync('css/style.css',strCss);
+    fs.appendFileSync('js/main.js',strJs);
+
+    process.exit(0);
+
+}
+
 
 
